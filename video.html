@@ -1,0 +1,27 @@
+<video src="Sonu.mp4" style="width: 100%;" controls id="video"></video>
+<script>
+    const video = document.getElementById("video");
+    document.addEventListener("visibilitychange", function () {
+        if (document["hidden"]) {
+            video.pause();
+        } else {
+            video.play();
+        }
+    });
+
+    var elem = document.querySelector("video");
+    let previousTime = 0;
+
+    elem.ontimeupdate = function () {
+        setTimeout(() => {
+            previousTime = elem.currentTime;
+        }, 1000)
+    }
+
+    elem.onseeking = function () {
+        if (elem.currentTime > previousTime) {
+            elem.currentTime = previousTime;
+        }
+    }
+
+</script>
